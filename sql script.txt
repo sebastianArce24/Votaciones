@@ -1,0 +1,58 @@
+CREATE TABLE `region` (
+  `id_region` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) NOT NULL,
+  PRIMARY KEY (`id_region`)
+) 
+
+CREATE TABLE `votaciones`.`comunas` (
+  `id_comuna` INT NOT NULL AUTO_INCREMENT,
+  `id_region` INT NULL,
+  `nombre` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_comuna`),
+  INDEX `fk_region_comuna_idx` (`id_region` ASC),
+  CONSTRAINT `fk_region_comuna`
+    FOREIGN KEY (`id_region`)
+    REFERENCES `votaciones`.`region` (`id_region`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE);
+
+
+CREATE TABLE `votaciones`.`candidatos` (
+  `id_candidatos` INT NOT NULL,
+  `nombre` VARCHAR(45) NULL);
+
+CREATE TABLE `votaciones`.`votos` (
+  `idvotos` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NULL,
+  `alias` VARCHAR(45) NULL,
+  `rut` VARCHAR(45) NULL,
+  `email` VARCHAR(45) NULL,
+  `region` VARCHAR(45) NULL,
+  `comuna` VARCHAR(45) NULL,
+  `candidato` VARCHAR(45) NULL,
+  PRIMARY KEY (`idvotos`),
+  UNIQUE INDEX `rut_UNIQUE` (`rut` ASC) );
+
+
+insert into region(nombre) values
+("Tarapaca"),("Antofagasta"),("Atacama"),("Coquimbo"),("valparaiso"),
+("libertador Bernardo O'Higgins"),("Maule"),
+("Bio-Bio"),("Araucania"),("Lagos"),("Aysen"),
+("Region de magallanes y antartica chilena"),
+("Metropolitana"),
+("Rios"),
+("Arica y Parinacota"),
+("Ñuble")
+;
+
+
+insert into comunas(id_region,nombre)values
+(1,"Iquique"),(2,"Antofagasta"),(3,"Copiapo"),(4,"la Serena"),
+(5,"Valparaiso"),(6,"Rancagua"),(7,"Talca"),(8,"Concepcion"),
+(9,"Temuco"),(10,"Puerto Montt"),(11,"Coyhaique"),(12,"Puerto montt"),
+(13,"Santiago"),(13,"Las Condes"),(13,"Puente Alto"),
+(14,"Valdivia"),(15,"Arica");
+
+
+
+
